@@ -1,0 +1,11 @@
+name: Cashio Backup Worker
+main: src/index.ts
+compatibility_date: "2024-01-01"
+
+r2_buckets = [
+  { binding = "BACKUPS_BUCKET", bucket_name = "cashio-backups" }
+]
+
+# Do not commit secrets here.
+# Run 
+px wrangler secret put API_TOKEN to set the required token.
