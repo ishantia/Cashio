@@ -1,3 +1,4 @@
+import '../../l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
@@ -28,6 +29,7 @@ class _AddDebtSheetState extends State<AddDebtSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
 
     return Container(
@@ -57,17 +59,17 @@ class _AddDebtSheetState extends State<AddDebtSheet> {
                 ),
               ),
             ),
-            const Text(
-              'Record Debt',
+            Text(
+              l10n.recordDebt,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
 
             Row(
               children: [
                 Expanded(
                   child: RadioListTile<DebtDirection>(
-                    title: const Text('I Owe', style: TextStyle(fontSize: 14)),
+                    title: Text(l10n.iOwe, style: TextStyle(fontSize: 14)),
                     value: DebtDirection.iOwe,
                     groupValue: _direction,
                     onChanged: (val) => setState(() => _direction = val!),
@@ -76,8 +78,8 @@ class _AddDebtSheetState extends State<AddDebtSheet> {
                 ),
                 Expanded(
                   child: RadioListTile<DebtDirection>(
-                    title: const Text(
-                      'Owes Me',
+                    title: Text(
+                      l10n.owesMe,
                       style: TextStyle(fontSize: 14),
                     ),
                     value: DebtDirection.owedToMe,
@@ -88,19 +90,19 @@ class _AddDebtSheetState extends State<AddDebtSheet> {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
 
-            const Text(
-              'Person / Entity Name',
+            Text(
+              l10n.personEntityName,
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             TextField(
               controller: _nameController,
-              decoration: const InputDecoration(hintText: 'e.g. John Doe'),
+              decoration: InputDecoration(hintText: l10n.egJohnDoe),
               autofocus: true,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
 
             Row(
               children: [
@@ -109,11 +111,11 @@ class _AddDebtSheetState extends State<AddDebtSheet> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Amount',
+                      Text(
+                        l10n.amount,
                         style: TextStyle(fontWeight: FontWeight.w500),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8),
                       TextField(
                         controller: _amountController,
                         keyboardType: const TextInputType.numberWithOptions(
@@ -125,17 +127,17 @@ class _AddDebtSheetState extends State<AddDebtSheet> {
                     ],
                   ),
                 ),
-                const SizedBox(width: 16),
+                SizedBox(width: 16),
                 Expanded(
                   flex: 1,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Currency',
+                      Text(
+                        l10n.currency,
                         style: TextStyle(fontWeight: FontWeight.w500),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8),
                       InputDecorator(
                         decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
@@ -146,7 +148,7 @@ class _AddDebtSheetState extends State<AddDebtSheet> {
                         child: DropdownButton<Currency>(
                           value: _selectedCurrency,
                           isExpanded: true,
-                          underline: const SizedBox(),
+                          underline: SizedBox(),
                           items: Currency.defaultCurrencies.map((c) {
                             return DropdownMenuItem(
                               value: c,
@@ -154,8 +156,9 @@ class _AddDebtSheetState extends State<AddDebtSheet> {
                             );
                           }).toList(),
                           onChanged: (val) {
-                            if (val != null)
+                            if (val != null) {
                               setState(() => _selectedCurrency = val);
+                            }
                           },
                         ),
                       ),
@@ -164,13 +167,13 @@ class _AddDebtSheetState extends State<AddDebtSheet> {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
 
-            const Text(
-              'Due Date (Optional)',
+            Text(
+              l10n.dueDateOptional,
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             InkWell(
               onTap: () async {
                 final date = await showDatePicker(
@@ -197,34 +200,34 @@ class _AddDebtSheetState extends State<AddDebtSheet> {
                           ? 'Select Date'
                           : '${_dueDate!.year}-${_dueDate!.month.toString().padLeft(2, '0')}-${_dueDate!.day.toString().padLeft(2, '0')}',
                     ),
-                    const Icon(Icons.calendar_today, size: 20),
+                    Icon(Icons.calendar_today, size: 20),
                   ],
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
 
-            const Text(
-              'Notes (Optional)',
+            Text(
+              l10n.noteOptional,
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             TextField(
               controller: _noteController,
               decoration: const InputDecoration(
-                hintText: 'e.g. For dinner last night',
+                hintText: l10n.egForDinner,
               ),
             ),
 
-            const SizedBox(height: 32),
+            SizedBox(height: 32),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: _save,
-                child: const Text('Save Debt'),
+                child: Text(l10n.saveDebt),
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
           ],
         ),
       ),

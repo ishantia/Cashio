@@ -11,7 +11,6 @@ import '../core/widgets/amount_display.dart';
 import '../core/widgets/empty_state.dart';
 import '../providers/data_providers.dart';
 
-import 'dart:ui' as ui;
 
 class ReportsScreen extends ConsumerStatefulWidget {
   const ReportsScreen({super.key});
@@ -38,7 +37,7 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
         title: Text(l10n.reports ?? 'Reports'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.date_range),
+            icon: Icon(Icons.date_range),
             onPressed: () async {
               final range = await showDateRangePicker(
                 context: context,
@@ -59,15 +58,16 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
       body: FutureBuilder<List<app_tx.Transaction>>(
         future: txAsync,
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting)
-            return const Center(child: CircularProgressIndicator());
-          if (snapshot.hasError) return const Center(child: Text('Error'));
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) return Center(child: Text(l10n.error));
           final txs = snapshot.data ?? [];
           if (txs.isEmpty) {
-            return const EmptyState(
+            return EmptyState(
               icon: Icons.bar_chart,
-              title: 'No reports yet',
-              message: 'Add some transactions to see your financial activity.',
+              title: l10n.noReportsYet,
+              message: l10n.addTransactionsToSee,
             );
           }
 
@@ -78,8 +78,9 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
 
           for (final tx in txs) {
             if (tx.type == app_tx.TransactionType.transferIn ||
-                tx.type == app_tx.TransactionType.transferOut)
+                tx.type == app_tx.TransactionType.transferOut) {
               continue;
+            }
 
             final code = tx.currency.code;
 
@@ -115,21 +116,21 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
                 children: [
                   Text(
                     '${startDate.toString().substring(0, 10)} - ${endDate.toString().substring(0, 10)}',
-                    style: const TextStyle(
+                    style: const TextStyle(fontFamily: 'Vazirmatn', 
                       fontWeight: FontWeight.w600,
                       color: AppTheme.textSecondary,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
 
               // Cash Flow
-              const Text(
-                'Cash Flow',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+              Text(
+                l10n.cashFlow,
+                style: TextStyle(fontFamily: 'Vazirmatn', fontSize: 18, fontWeight: FontWeight.w700),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               ...allCurrencies.map((code) {
                 final inc = incomeByCurrency[code] ?? 0;
                 final exp = expenseByCurrency[code] ?? 0;
@@ -143,9 +144,9 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              'Net Flow',
-                              style: TextStyle(fontWeight: FontWeight.w600),
+                            Text(
+                              l10n.netFlow,
+                              style: TextStyle(fontFamily: 'Vazirmatn', fontWeight: FontWeight.w600),
                             ),
                             AmountDisplay(
                               amount: net,
@@ -154,7 +155,7 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
                                   ? app_tx.TransactionType.income
                                   : app_tx.TransactionType.expense,
                               forceSign: true,
-                              style: const TextStyle(fontSize: 18),
+                              style: const TextStyle(fontFamily: 'Vazirmatn', fontSize: 18),
                             ),
                           ],
                         ),
@@ -162,9 +163,9 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              'Income',
-                              style: TextStyle(color: AppTheme.textSecondary),
+                            Text(
+                              l10n.income,
+                              style: TextStyle(fontFamily: 'Vazirmatn', color: AppTheme.textSecondary),
                             ),
                             AmountDisplay(
                               amount: inc,
@@ -174,13 +175,13 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 8),
+                        SizedBox(height: 8),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              'Expense',
-                              style: TextStyle(color: AppTheme.textSecondary),
+                            Text(
+                              l10n.expense,
+                              style: TextStyle(fontFamily: 'Vazirmatn', color: AppTheme.textSecondary),
                             ),
                             AmountDisplay(
                               amount: exp,
@@ -195,12 +196,12 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
                 );
               }),
 
-              const SizedBox(height: 24),
-              const Text(
-                'Spending by Category',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+              SizedBox(height: 24),
+              Text(
+                l10n.spendingByCategory,
+                style: TextStyle(fontFamily: 'Vazirmatn', fontSize: 18, fontWeight: FontWeight.w700),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               ...allCurrencies.map((code) {
                 // Get all categories for this currency
                 final catSpending = <String, int>{};
@@ -210,7 +211,7 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
                   }
                 }
 
-                if (catSpending.isEmpty) return const SizedBox();
+                if (catSpending.isEmpty) return SizedBox();
 
                 return AppCard(
                   margin: const EdgeInsets.only(bottom: 16),
@@ -221,9 +222,9 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
                       children: [
                         Text(
                           code,
-                          style: const TextStyle(fontWeight: FontWeight.w600),
+                          style: const TextStyle(fontFamily: 'Vazirmatn', fontWeight: FontWeight.w600),
                         ),
-                        const SizedBox(height: 24),
+                        SizedBox(height: 24),
                         categoriesAsync.when(
                           data: (categories) {
                             return _buildCategoryChart(
@@ -233,7 +234,7 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
                             );
                           },
                           loading: () => const CircularProgressIndicator(),
-                          error: (e, s) => const Text('Error'),
+                          error: (e, s) => Text(l10n.error),
                         ),
                       ],
                     ),
@@ -278,7 +279,7 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
             ),
           ),
         ),
-        const SizedBox(height: 24),
+        SizedBox(height: 24),
         Wrap(
           spacing: 16,
           runSpacing: 12,
@@ -302,16 +303,16 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
                     shape: BoxShape.circle,
                   ),
                 ),
-                const SizedBox(width: 8),
+                SizedBox(width: 8),
                 Text(
                   name,
                   style: const TextStyle(fontSize: 14, fontFamily: 'Vazirmatn'),
                 ),
-                const SizedBox(width: 8),
+                SizedBox(width: 8),
                 AmountDisplay(
                   amount: e.value,
                   currencyCode: currencyCode,
-                  style: const TextStyle(fontSize: 14),
+                  style: const TextStyle(fontFamily: 'Vazirmatn', fontSize: 14),
                 ),
               ],
             );

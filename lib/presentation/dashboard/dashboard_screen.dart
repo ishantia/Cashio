@@ -7,7 +7,6 @@ import 'package:cashio/l10n/generated/app_localizations.dart';
 
 import '../../core/providers.dart';
 import '../providers/data_providers.dart';
-import '../../domain/models/currency.dart';
 import '../../domain/models/category.dart';
 import '../../domain/models/transaction.dart';
 import '../core/theme/app_theme.dart';
@@ -46,7 +45,7 @@ class DashboardScreen extends ConsumerWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _showAddTransactionBottomSheet(context),
         icon: const Icon(Icons.add),
-        label: const Text('Add'),
+        label: Text(l10n.add),
         backgroundColor: AppTheme.lightTheme.colorScheme.primary,
         foregroundColor: Colors.white,
         elevation: 4,
@@ -69,7 +68,7 @@ class DashboardScreen extends ConsumerWidget {
                 children: [
                   // Total Balances
                   Text(
-                    'Net Worth',
+                    l10n.netWorth,
                     style: Theme.of(context).textTheme.titleSmall
                         ?.copyWith(color: AppTheme.textSecondary),
                   ),
@@ -94,7 +93,7 @@ class DashboardScreen extends ConsumerWidget {
                   // Charts
                   dashboardData.when(
                     loading: () => const SizedBox(),
-                    error: (_, __) => const SizedBox(),
+                    error: (_, _) => const SizedBox(),
                     data: (data) => _buildCharts(context, ref, data),
                   ),
 
@@ -105,13 +104,13 @@ class DashboardScreen extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Recent Transactions',
+                        l10n.recentTransactions,
                         style: Theme.of(context).textTheme.titleMedium
                             ?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       TextButton(
                         onPressed: () => context.go('/transactions'),
-                        child: const Text('See All'),
+                        child: Text(l10n.seeAll),
                       ),
                     ],
                   ),
@@ -119,7 +118,7 @@ class DashboardScreen extends ConsumerWidget {
 
                   dashboardData.when(
                     loading: () => const SizedBox(),
-                    error: (_, __) => const SizedBox(),
+                    error: (_, _) => const SizedBox(),
                     data: (data) => _buildRecentTransactions(
                       context,
                       data['recent'] as List<Transaction>,
@@ -189,15 +188,16 @@ class DashboardScreen extends ConsumerWidget {
   }
 
   Widget _buildBalances(BuildContext context, AsyncValue accountsData) {
+    final l10n = AppLocalizations.of(context)!;
     return accountsData.when(
       loading: () => const SizedBox(
         height: 50,
         child: Center(child: CircularProgressIndicator()),
       ),
-      error: (e, s) => Text('Error loading accounts'),
+      error: (e, s) => Text(l10n.errorLoadingAccounts),
       data: (accounts) {
         if (accounts.isEmpty) {
-          return const Text('No accounts set up.');
+          return Text(l10n.noAccountsSetUp);
         }
 
         final balancesByCurrency = <String, int>{};
@@ -246,6 +246,7 @@ class DashboardScreen extends ConsumerWidget {
     BuildContext context,
     Map<String, dynamic> data,
   ) {
+    final l10n = AppLocalizations.of(context)!;
     final incomeMap = data['income'] as Map<String, int>;
     final expenseMap = data['expense'] as Map<String, int>;
 
@@ -313,7 +314,7 @@ class DashboardScreen extends ConsumerWidget {
                               ),
                               const SizedBox(width: 4),
                               Text(
-                                'Income',
+                                l10n.income,
                                 style: TextStyle(
                                   color: AppTheme.textSecondary,
                                   fontSize: 13,
@@ -352,7 +353,7 @@ class DashboardScreen extends ConsumerWidget {
                               ),
                               const SizedBox(width: 4),
                               Text(
-                                'Expenses',
+                                l10n.expenses,
                                 style: TextStyle(
                                   color: AppTheme.textSecondary,
                                   fontSize: 13,
@@ -387,6 +388,7 @@ class DashboardScreen extends ConsumerWidget {
     WidgetRef ref,
     Map<String, dynamic> data,
   ) {
+    final l10n = AppLocalizations.of(context)!;
     final categorySpending =
         data['category_spending'] as Map<String, Map<String, int>>;
     if (categorySpending.isEmpty) return const SizedBox();
@@ -475,7 +477,7 @@ class DashboardScreen extends ConsumerWidget {
               );
             },
             loading: () => const CircularProgressIndicator(),
-            error: (e, s) => const Text('Error'),
+            error: (e, s) => Text(l10n.error),
           ),
         ],
       ),
@@ -504,6 +506,7 @@ class DashboardScreen extends ConsumerWidget {
   }
 
   Widget _buildTransactionTile(BuildContext context, Transaction tx) {
+    final l10n = AppLocalizations.of(context)!;
     final isIncome = tx.type == TransactionType.income;
     final isTransfer =
         tx.type == TransactionType.transferOut ||
@@ -541,7 +544,7 @@ class DashboardScreen extends ConsumerWidget {
               children: [
                 Text(
                   isTransfer
-                      ? 'Transfer'
+                      ? l10n.transfer
                       : (tx.note?.isNotEmpty == true
                             ? tx.note!
                             : tx.type.name.toUpperCase()),

@@ -182,9 +182,10 @@ class DatabaseHelper {
   Future<void> _upgradeDB(Database db, int oldVersion, int newVersion) async {
     if (oldVersion < 2) await _createV2Tables(db);
     if (oldVersion < 3) await _createV3Tables(db);
-    if (oldVersion < 4)
+    if (oldVersion < 4) {
       await db.execute(
         'ALTER TABLE budgets ADD COLUMN is_active INTEGER NOT NULL DEFAULT 1',
       );
+    }
   }
 }

@@ -80,8 +80,9 @@ class CloudflareBackupRepository implements CloudBackupRepository {
         'No internet connection or server unreachable.',
       );
     } catch (e) {
-      if (e is CloudAuthenticationException || e is CloudNetworkException)
+      if (e is CloudAuthenticationException || e is CloudNetworkException) {
         rethrow;
+      }
       throw CloudNetworkException('Unexpected error during upload: $e');
     }
   }
@@ -115,8 +116,9 @@ class CloudflareBackupRepository implements CloudBackupRepository {
         'No internet connection or server unreachable.',
       );
     } catch (e) {
-      if (e is CloudAuthenticationException || e is CloudNetworkException)
+      if (e is CloudAuthenticationException || e is CloudNetworkException) {
         rethrow;
+      }
       throw CloudNetworkException('Unexpected error listing backups: $e');
     }
   }
@@ -155,8 +157,9 @@ class CloudflareBackupRepository implements CloudBackupRepository {
     } catch (e) {
       if (e is CloudAuthenticationException ||
           e is CloudBackupNotFoundException ||
-          e is CloudNetworkException)
+          e is CloudNetworkException) {
         rethrow;
+      }
       throw CloudNetworkException('Unexpected error downloading backup: $e');
     }
   }
@@ -186,8 +189,9 @@ class CloudflareBackupRepository implements CloudBackupRepository {
         'No internet connection or server unreachable.',
       );
     } catch (e) {
-      if (e is CloudAuthenticationException || e is CloudNetworkException)
+      if (e is CloudAuthenticationException || e is CloudNetworkException) {
         rethrow;
+      }
       throw CloudNetworkException('Unexpected error deleting backup: $e');
     }
   }

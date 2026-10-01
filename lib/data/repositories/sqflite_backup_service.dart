@@ -58,8 +58,9 @@ class SqfliteBackupService implements BackupService {
       final payload = jsonDecode(payloadString) as Map<String, dynamic>;
 
       if (payload['format_version'] != currentFormatVersion) return false;
-      if (payload['database_schema_version'] > 3)
+      if (payload['database_schema_version'] > 3) {
         return false; // Unsupported future schema
+      }
 
       return true;
     } catch (e) {

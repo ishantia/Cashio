@@ -96,7 +96,7 @@ class TransactionsScreen extends ConsumerWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _showAddTransactionBottomSheet(context, ref),
         icon: const Icon(Icons.add),
-        label: const Text('Add'),
+        label: Text(l10n.add),
         backgroundColor: AppTheme.lightTheme.colorScheme.primary,
         foregroundColor: Colors.white,
       ),
@@ -129,6 +129,7 @@ class TransactionsScreen extends ConsumerWidget {
     WidgetRef ref,
     app_tx.Transaction tx,
   ) {
+    final l10n = AppLocalizations.of(context)!;
     final isIncome = tx.type == app_tx.TransactionType.income;
     final isTransfer =
         tx.type == app_tx.TransactionType.transferOut ||
@@ -160,19 +161,19 @@ class TransactionsScreen extends ConsumerWidget {
         return await showDialog<bool>(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text('Delete Transaction?'),
-            content: const Text(
-              'Are you sure you want to delete this transaction?',
+            title: Text(l10n.deleteTransaction),
+            content: Text(
+              l10n.deleteTransactionConfirm,
             ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context, false),
-                child: const Text('Cancel'),
+                child: Text(l10n.cancel),
               ),
               TextButton(
                 onPressed: () => Navigator.pop(context, true),
-                child: const Text(
-                  'Delete',
+                child: Text(
+                  l10n.delete,
                   style: TextStyle(color: Colors.red),
                 ),
               ),
@@ -190,7 +191,7 @@ class TransactionsScreen extends ConsumerWidget {
         ref.invalidate(allTransactionsProvider);
         if (!context.mounted) return;
         ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Transaction deleted')));
+            .showSnackBar(SnackBar(content: Text(l10n.transactionDeleted)));
       },
       child: AppCard(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
@@ -215,7 +216,7 @@ class TransactionsScreen extends ConsumerWidget {
                 children: [
                   Text(
                     isTransfer
-                        ? 'Transfer'
+                        ? l10n.transfer
                         : (tx.note?.isNotEmpty == true
                               ? tx.note!
                               : tx.type.name.toUpperCase()),

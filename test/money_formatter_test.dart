@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:cashio/presentation/core/utils/money_formatter.dart';
-import 'package:flutter/services.dart';
 
 void main() {
   group('MoneyInputFormatter', () {

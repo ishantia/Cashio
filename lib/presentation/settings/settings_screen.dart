@@ -51,7 +51,7 @@ class SettingsScreen extends ConsumerWidget {
           ),
           TextButton(
             onPressed: () => Navigator.pop(ctx, true),
-            child: const Text('Restore', style: TextStyle(color: Colors.red)),
+            child: Text(l10n.restore, style: TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -65,12 +65,13 @@ class SettingsScreen extends ConsumerWidget {
           .pickFile(allowedExtensions: ['json']);
 
       if (path == null) {
-        if (context.mounted)
+        if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(AppLocalizations.of(context)!.noBackupFound),
             ),
           );
+        }
         return;
       }
 

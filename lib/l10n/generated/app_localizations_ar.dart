@@ -86,7 +86,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get search => 'Search';
 
   @override
-  String get reports => '??????';
+  String get reports => 'التقارير';
 
   @override
   String get budgets => 'ميزانيات';
@@ -235,4 +235,288 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get debtsAndLoans => 'Debts & Loans';
+
+  @override
+  String get apiToken => 'رمز API';
+
+  @override
+  String get account => 'حساب';
+
+  @override
+  String get accountName => 'اسم الحساب';
+
+  @override
+  String get add => 'إضافة';
+
+  @override
+  String get addCategory => 'إضافة فئة';
+
+  @override
+  String get addDebt => 'إضافة دين';
+
+  @override
+  String get addRecurring => 'إضافة متكرر';
+
+  @override
+  String get addRecurringTransaction => 'إضافة معاملة متكررة';
+
+  @override
+  String get advancedFilters => 'تصفية متقدمة';
+
+  @override
+  String get automaticBackup => 'نسخ احتياطي تلقائي';
+
+  @override
+  String get backupFrequencyDesc => 'كل 24 ساعة تقريباً';
+
+  @override
+  String get deleteRecurringConfirm =>
+      'هل أنت متأكد من حذف هذه الأتمتة؟ ستبقى المعاملات السابقة.';
+
+  @override
+  String get deleteBudgetConfirm => 'هل أنت متأكد من حذف هذه الميزانية؟';
+
+  @override
+  String get deleteBackupConfirm =>
+      'هل أنت متأكد من حذف هذه النسخة الاحتياطية؟';
+
+  @override
+  String get deleteDebtConfirm =>
+      'هل أنت متأكد من حذف هذا الدين؟ لن يتم حذف المعاملات المرتبطة به.';
+
+  @override
+  String get deleteTransactionConfirm => 'هل أنت متأكد من حذف هذه المعاملة؟';
+
+  @override
+  String get backupHistory => 'تاريخ النسخ الاحتياطي:';
+
+  @override
+  String get backupNow => 'النسخ الآن';
+
+  @override
+  String get cashFlow => 'التدفق النقدي';
+
+  @override
+  String get categories => 'الفئات';
+
+  @override
+  String get category => 'فئة';
+
+  @override
+  String get cloudBackup => 'النسخ السحابي';
+
+  @override
+  String get color => 'لون';
+
+  @override
+  String get configureCloudBackup => 'إعداد النسخ السحابي';
+
+  @override
+  String get configureSettings => 'إعدادات';
+
+  @override
+  String get currency => 'العملة';
+
+  @override
+  String get date => 'التاريخ';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get deleteDebt => 'حذف الدين';
+
+  @override
+  String get deleteRecurring => 'حذف المتكرر';
+
+  @override
+  String get deleteTransaction => 'حذف المعاملة؟';
+
+  @override
+  String get deleteBackup => 'حذف النسخة؟';
+
+  @override
+  String get dueDateOptional => 'تاريخ الاستحقاق (اختياري)';
+
+  @override
+  String get dueDate => 'الاستحقاق: ';
+
+  @override
+  String get edit => 'تعديل';
+
+  @override
+  String get encryptionPassword => 'كلمة مرور التشفير';
+
+  @override
+  String get errorLoadingAccounts => 'خطأ في تحميل الحسابات';
+
+  @override
+  String get expenses => 'المصروفات';
+
+  @override
+  String get fromText => 'من';
+
+  @override
+  String get iOwe => 'أنا مدين';
+
+  @override
+  String get icon => 'أيقونة';
+
+  @override
+  String get initialBalance => 'الرصيد الافتتاحي';
+
+  @override
+  String get maxAmount => 'الحد الأقصى';
+
+  @override
+  String get minAmount => 'الحد الأدنى';
+
+  @override
+  String get name => 'الاسم';
+
+  @override
+  String get netFlow => 'صافي التدفق';
+
+  @override
+  String get netWorth => 'صافي الثروة';
+
+  @override
+  String get newAccount => 'حساب جديد';
+
+  @override
+  String get nextDate => 'التاريخ التالي';
+
+  @override
+  String get noAccountsSetUp => 'لم يتم إعداد حسابات.';
+
+  @override
+  String get noCategoriesFound =>
+      'لم يتم العثور على فئات.\\nقم بإنشاء واحدة في علامة تبويب الفئات!';
+
+  @override
+  String get noteOptional => 'ملاحظة (اختياري)';
+
+  @override
+  String get noteTitle => 'ملاحظة / عنوان';
+
+  @override
+  String get owesMe => 'يدين لي';
+
+  @override
+  String get personEntityName => 'اسم الشخص / الجهة';
+
+  @override
+  String get recentTransactions => 'المعاملات الأخيرة';
+
+  @override
+  String get recordDebt => 'تسجيل الدين';
+
+  @override
+  String get repeats => 'يتكرر';
+
+  @override
+  String get restoreThisBackup => 'استعادة هذه النسخة؟';
+
+  @override
+  String get saveAccount => 'حفظ الحساب';
+
+  @override
+  String get saveCategory => 'حفظ الفئة';
+
+  @override
+  String get saveDebt => 'حفظ الدين';
+
+  @override
+  String get saveRule => 'حفظ القاعدة';
+
+  @override
+  String get seeAll => 'عرض الكل';
+
+  @override
+  String get selectAccount => 'اختر الحساب';
+
+  @override
+  String get selectCategory => 'اختر الفئة';
+
+  @override
+  String get spendingByCategory => 'الإنفاق حسب الفئة';
+
+  @override
+  String get startDate => 'تاريخ البدء';
+
+  @override
+  String get to => 'إلى';
+
+  @override
+  String get topSpending => 'أعلى الإنفاق';
+
+  @override
+  String get total => 'الإجمالي: ';
+
+  @override
+  String get transactionDeleted => 'تم حذف المعاملة';
+
+  @override
+  String get type => 'النوع';
+
+  @override
+  String get userId => 'معرف المستخدم';
+
+  @override
+  String get whatWasThisFor => 'لأي غرض كان هذا؟';
+
+  @override
+  String get workerUrl => 'رابط Worker';
+
+  @override
+  String get restoreBackupWarning =>
+      'سيتم استبدال بياناتك المحلية الحالية بالنسخة الاحتياطية المحددة.';
+
+  @override
+  String get egForDinner => 'مثلاً لعشاء البارحة';
+
+  @override
+  String get egGroceries => 'مثلاً بقالة';
+
+  @override
+  String get egJohnDoe => 'مثلاً أحمد محمد';
+
+  @override
+  String get egMainWallet => 'مثلاً المحفظة الرئيسية';
+
+  @override
+  String get egNetflix => 'مثلاً اشتراك نتفليكس';
+
+  @override
+  String get egPartialPayment => 'مثلاً دفعة جزئية';
+
+  @override
+  String get ofText => 'من';
+
+  @override
+  String get thisWeek => 'هذا الأسبوع';
+
+  @override
+  String get thisMonth => 'هذا الشهر';
+
+  @override
+  String get thisYear => 'هذا العام';
+
+  @override
+  String get today => 'اليوم';
+
+  @override
+  String get custom => 'مخصص';
+
+  @override
+  String get all => 'الكل';
+
+  @override
+  String get status => 'الحالة: ';
+
+  @override
+  String get noReportsYet => 'لا توجد تقارير بعد';
+
+  @override
+  String get addTransactionsToSee => 'أضف بعض المعاملات لرؤية نشاطك المالي.';
 }

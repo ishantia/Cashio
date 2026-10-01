@@ -1,3 +1,4 @@
+import '../../l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
@@ -29,6 +30,7 @@ class _AddRecurringSheetState extends State<AddRecurringSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
 
     return Container(
@@ -58,18 +60,18 @@ class _AddRecurringSheetState extends State<AddRecurringSheet> {
                 ),
               ),
             ),
-            const Text(
-              'Add Recurring Transaction',
+            Text(
+              l10n.addRecurringTransaction,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
 
             Row(
               children: [
                 Expanded(
                   child: RadioListTile<TransactionType>(
-                    title: const Text(
-                      'Expense',
+                    title: Text(
+                      l10n.expense,
                       style: TextStyle(fontSize: 14),
                     ),
                     value: TransactionType.expense,
@@ -80,7 +82,7 @@ class _AddRecurringSheetState extends State<AddRecurringSheet> {
                 ),
                 Expanded(
                   child: RadioListTile<TransactionType>(
-                    title: const Text('Income', style: TextStyle(fontSize: 14)),
+                    title: Text(l10n.income, style: TextStyle(fontSize: 14)),
                     value: TransactionType.income,
                     groupValue: _type,
                     onChanged: (val) => setState(() => _type = val!),
@@ -89,7 +91,7 @@ class _AddRecurringSheetState extends State<AddRecurringSheet> {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
 
             Row(
               children: [
@@ -98,11 +100,11 @@ class _AddRecurringSheetState extends State<AddRecurringSheet> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Amount',
+                      Text(
+                        l10n.amount,
                         style: TextStyle(fontWeight: FontWeight.w500),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8),
                       TextField(
                         controller: _amountController,
                         keyboardType: const TextInputType.numberWithOptions(
@@ -115,17 +117,17 @@ class _AddRecurringSheetState extends State<AddRecurringSheet> {
                     ],
                   ),
                 ),
-                const SizedBox(width: 16),
+                SizedBox(width: 16),
                 Expanded(
                   flex: 1,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Currency',
+                      Text(
+                        l10n.currency,
                         style: TextStyle(fontWeight: FontWeight.w500),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8),
                       InputDecorator(
                         decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
@@ -136,7 +138,7 @@ class _AddRecurringSheetState extends State<AddRecurringSheet> {
                         child: DropdownButton<Currency>(
                           value: _selectedCurrency,
                           isExpanded: true,
-                          underline: const SizedBox(),
+                          underline: SizedBox(),
                           items: Currency.defaultCurrencies.map((c) {
                             return DropdownMenuItem(
                               value: c,
@@ -144,8 +146,9 @@ class _AddRecurringSheetState extends State<AddRecurringSheet> {
                             );
                           }).toList(),
                           onChanged: (val) {
-                            if (val != null)
+                            if (val != null) {
                               setState(() => _selectedCurrency = val);
+                            }
                           },
                         ),
                       ),
@@ -154,7 +157,7 @@ class _AddRecurringSheetState extends State<AddRecurringSheet> {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
 
             Row(
               children: [
@@ -162,11 +165,11 @@ class _AddRecurringSheetState extends State<AddRecurringSheet> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Repeats',
+                      Text(
+                        l10n.repeats,
                         style: TextStyle(fontWeight: FontWeight.w500),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8),
                       InputDecorator(
                         decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
@@ -177,7 +180,7 @@ class _AddRecurringSheetState extends State<AddRecurringSheet> {
                         child: DropdownButton<RecurrenceRule>(
                           value: _rule,
                           isExpanded: true,
-                          underline: const SizedBox(),
+                          underline: SizedBox(),
                           items: RecurrenceRule.values.map((r) {
                             return DropdownMenuItem(
                               value: r,
@@ -192,16 +195,16 @@ class _AddRecurringSheetState extends State<AddRecurringSheet> {
                     ],
                   ),
                 ),
-                const SizedBox(width: 16),
+                SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Start Date',
+                      Text(
+                        l10n.startDate,
                         style: TextStyle(fontWeight: FontWeight.w500),
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8),
                       InkWell(
                         onTap: () async {
                           final date = await showDatePicker(
@@ -229,29 +232,29 @@ class _AddRecurringSheetState extends State<AddRecurringSheet> {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
 
-            const Text(
-              'Note / Title',
+            Text(
+              l10n.noteTitle,
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             TextField(
               controller: _noteController,
               decoration: const InputDecoration(
-                hintText: 'e.g. Netflix Subscription',
+                hintText: l10n.egNetflix,
               ),
             ),
 
-            const SizedBox(height: 32),
+            SizedBox(height: 32),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: _save,
-                child: const Text('Save Rule'),
+                child: Text(l10n.saveRule),
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
           ],
         ),
       ),

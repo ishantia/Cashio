@@ -86,7 +86,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get search => 'Search';
 
   @override
-  String get reports => '????????';
+  String get reports => 'گزارش‌ها';
 
   @override
   String get budgets => 'بودجه‌ها';
@@ -235,4 +235,288 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get debtsAndLoans => 'Debts & Loans';
+
+  @override
+  String get apiToken => 'توکن API';
+
+  @override
+  String get account => 'حساب';
+
+  @override
+  String get accountName => 'نام حساب';
+
+  @override
+  String get add => 'افزودن';
+
+  @override
+  String get addCategory => 'افزودن دسته‌بندی';
+
+  @override
+  String get addDebt => 'افزودن بدهی';
+
+  @override
+  String get addRecurring => 'افزودن تکرارشونده';
+
+  @override
+  String get addRecurringTransaction => 'افزودن تراکنش تکرارشونده';
+
+  @override
+  String get advancedFilters => 'فیلترهای پیشرفته';
+
+  @override
+  String get automaticBackup => 'پشتیبان‌گیری خودکار';
+
+  @override
+  String get backupFrequencyDesc => 'تقریباً هر ۲۴ ساعت';
+
+  @override
+  String get deleteRecurringConfirm =>
+      'آیا از حذف این خودکارسازی مطمئن هستید؟ تراکنش‌های گذشته باقی می‌مانند.';
+
+  @override
+  String get deleteBudgetConfirm => 'آیا از حذف این بودجه مطمئن هستید؟';
+
+  @override
+  String get deleteBackupConfirm => 'آیا از حذف این پشتیبان ابری مطمئن هستید؟';
+
+  @override
+  String get deleteDebtConfirm =>
+      'آیا از حذف این بدهی مطمئن هستید؟ تراکنش‌های مرتبط حذف نمی‌شوند، اما پیوند آن‌ها از بین می‌رود.';
+
+  @override
+  String get deleteTransactionConfirm => 'آیا از حذف این تراکنش مطمئن هستید؟';
+
+  @override
+  String get backupHistory => 'تاریخچه پشتیبان‌گیری:';
+
+  @override
+  String get backupNow => 'پشتیبان‌گیری هم‌اکنون';
+
+  @override
+  String get cashFlow => 'گردش مالی';
+
+  @override
+  String get categories => 'دسته‌بندی‌ها';
+
+  @override
+  String get category => 'دسته‌بندی';
+
+  @override
+  String get cloudBackup => 'پشتیبان‌گیری ابری';
+
+  @override
+  String get color => 'رنگ';
+
+  @override
+  String get configureCloudBackup => 'پیکربندی پشتیبان‌گیری ابری';
+
+  @override
+  String get configureSettings => 'تنظیمات';
+
+  @override
+  String get currency => 'ارز';
+
+  @override
+  String get date => 'تاریخ';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get deleteDebt => 'حذف بدهی';
+
+  @override
+  String get deleteRecurring => 'حذف تکرارشونده';
+
+  @override
+  String get deleteTransaction => 'حذف تراکنش؟';
+
+  @override
+  String get deleteBackup => 'حذف پشتیبان؟';
+
+  @override
+  String get dueDateOptional => 'تاریخ سررسید (اختیاری)';
+
+  @override
+  String get dueDate => 'سررسید: ';
+
+  @override
+  String get edit => 'ویرایش';
+
+  @override
+  String get encryptionPassword => 'رمز عبور رمزنگاری';
+
+  @override
+  String get errorLoadingAccounts => 'خطا در بارگذاری حساب‌ها';
+
+  @override
+  String get expenses => 'هزینه‌ها';
+
+  @override
+  String get fromText => 'از';
+
+  @override
+  String get iOwe => 'من بدهکارم';
+
+  @override
+  String get icon => 'آیکون';
+
+  @override
+  String get initialBalance => 'موجودی اولیه';
+
+  @override
+  String get maxAmount => 'حداکثر مبلغ';
+
+  @override
+  String get minAmount => 'حداقل مبلغ';
+
+  @override
+  String get name => 'نام';
+
+  @override
+  String get netFlow => 'خالص جریان';
+
+  @override
+  String get netWorth => 'دارایی خالص';
+
+  @override
+  String get newAccount => 'حساب جدید';
+
+  @override
+  String get nextDate => 'تاریخ بعدی';
+
+  @override
+  String get noAccountsSetUp => 'هیچ حسابی تنظیم نشده است.';
+
+  @override
+  String get noCategoriesFound =>
+      'هیچ دسته‌بندی یافت نشد.\nدر تب دسته‌بندی‌ها یکی ایجاد کنید!';
+
+  @override
+  String get noteOptional => 'یادداشت (اختیاری)';
+
+  @override
+  String get noteTitle => 'یادداشت / عنوان';
+
+  @override
+  String get owesMe => 'به من بدهکار است';
+
+  @override
+  String get personEntityName => 'نام شخص / نهاد';
+
+  @override
+  String get recentTransactions => 'تراکنش‌های اخیر';
+
+  @override
+  String get recordDebt => 'ثبت بدهی';
+
+  @override
+  String get repeats => 'تکرار';
+
+  @override
+  String get restoreThisBackup => 'این پشتیبان بازیابی شود؟';
+
+  @override
+  String get saveAccount => 'ذخیره حساب';
+
+  @override
+  String get saveCategory => 'ذخیره دسته‌بندی';
+
+  @override
+  String get saveDebt => 'ذخیره بدهی';
+
+  @override
+  String get saveRule => 'ذخیره قانون';
+
+  @override
+  String get seeAll => 'مشاهده همه';
+
+  @override
+  String get selectAccount => 'انتخاب حساب';
+
+  @override
+  String get selectCategory => 'انتخاب دسته‌بندی';
+
+  @override
+  String get spendingByCategory => 'هزینه‌ها بر اساس دسته‌بندی';
+
+  @override
+  String get startDate => 'تاریخ شروع';
+
+  @override
+  String get to => 'به';
+
+  @override
+  String get topSpending => 'بیشترین هزینه‌ها';
+
+  @override
+  String get total => 'کل: ';
+
+  @override
+  String get transactionDeleted => 'تراکنش حذف شد';
+
+  @override
+  String get type => 'نوع';
+
+  @override
+  String get userId => 'شناسه کاربری';
+
+  @override
+  String get whatWasThisFor => 'بابت چه بود؟';
+
+  @override
+  String get workerUrl => 'آدرس Worker';
+
+  @override
+  String get restoreBackupWarning =>
+      'داده‌های محلی فعلی شما با پشتیبان انتخاب شده جایگزین خواهد شد.';
+
+  @override
+  String get egForDinner => 'مثلاً برای شام دیشب';
+
+  @override
+  String get egGroceries => 'مثلاً مواد غذایی';
+
+  @override
+  String get egJohnDoe => 'مثلاً علی محمدی';
+
+  @override
+  String get egMainWallet => 'مثلاً کیف پول اصلی';
+
+  @override
+  String get egNetflix => 'مثلاً اشتراک نتفلیکس';
+
+  @override
+  String get egPartialPayment => 'مثلاً پرداخت بخشی از بدهی';
+
+  @override
+  String get ofText => 'از';
+
+  @override
+  String get thisWeek => 'این هفته';
+
+  @override
+  String get thisMonth => 'این ماه';
+
+  @override
+  String get thisYear => 'امسال';
+
+  @override
+  String get today => 'امروز';
+
+  @override
+  String get custom => 'دلخواه';
+
+  @override
+  String get all => 'همه';
+
+  @override
+  String get status => 'وضعیت: ';
+
+  @override
+  String get noReportsYet => 'گزارشی موجود نیست';
+
+  @override
+  String get addTransactionsToSee =>
+      'برای دیدن فعالیت مالی خود، تراکنشی اضافه کنید.';
 }

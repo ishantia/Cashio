@@ -62,11 +62,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get totalBalance => 'Total Balance';
 
   @override
-  String get income => 'Income';
+  String get income => l10n.income;
 
   @override
-  String get expense => 'Expense';
+  String get expense => l10n.expense;
 
   @override
-  String get transfer => 'Transfer';
+  String get transfer => l10n.transfer;
 }

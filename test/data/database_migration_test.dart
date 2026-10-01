@@ -1,9 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:cashio/data/database/database_helper.dart';
 import 'package:path/path.dart';
 
-import 'dart:io';
 
 void main() {
   setUpAll(() {

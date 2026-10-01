@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:cashio/domain/services/backup_service.dart';
 import 'package:cashio/domain/services/encryption_service.dart';
@@ -34,7 +33,7 @@ class CloudSyncService {
   Future<bool> performCloudBackup({bool isAutomatic = false}) async {
     // 1. Get canonical backup JSON string
     final backupJson = await _localBackupService.exportBackup();
-    final plaintextData = utf8.encode(backupJson) as Uint8List;
+    final plaintextData = utf8.encode(backupJson);
 
     // Deduplication check
     final plaintextChecksum = sha256.convert(plaintextData).toString();
@@ -58,7 +57,7 @@ class CloudSyncService {
 
     // 4. Generate Backup ID
     final backupId =
-        'backup_' + DateTime.now().millisecondsSinceEpoch.toString();
+        'backup_${DateTime.now().millisecondsSinceEpoch}';
 
     // 5. Upload to Cloud
     await _cloudBackupRepository.uploadBackup(

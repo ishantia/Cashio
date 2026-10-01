@@ -26,6 +26,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   bool? isRecurringGenerated;
 
   void _showAdvancedFilters(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -44,7 +45,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Advanced Filters',
+                      l10n.advancedFilters,
                       style: Theme.of(ctx).textTheme.titleLarge,
                     ),
                     const SizedBox(height: 16),
@@ -53,8 +54,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                         Expanded(
                           child: TextField(
                             keyboardType: TextInputType.number,
-                            decoration: const InputDecoration(
-                              labelText: 'Min Amount',
+                            decoration: InputDecoration(
+                              labelText: l10n.minAmount,
                             ),
                             onChanged: (val) {
                               minAmount = int.tryParse(val);
@@ -65,8 +66,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                         Expanded(
                           child: TextField(
                             keyboardType: TextInputType.number,
-                            decoration: const InputDecoration(
-                              labelText: 'Max Amount',
+                            decoration: InputDecoration(
+                              labelText: l10n.maxAmount,
                             ),
                             onChanged: (val) {
                               maxAmount = int.tryParse(val);
@@ -183,7 +184,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   ),
                   ActionChip(
                     label: Text(
-                      AppLocalizations.of(context)!.transfer ?? 'Transfer',
+                      AppLocalizations.of(context)!.transfer ?? l10n.transfer,
                     ),
                     backgroundColor: type == app_tx.TransactionType.transferOut
                         ? Colors.blue.shade100
@@ -196,7 +197,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     label: Text(
                       startDate != null
                           ? startDate.toString().substring(0, 10)
-                          : 'Start Date',
+                          : l10n.startDate,
                     ),
                     onPressed: () async {
                       final d = await showDatePicker(
@@ -255,10 +256,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   );
                 }
                 final txs = snapshot.data ?? [];
-                if (txs.isEmpty)
+                if (txs.isEmpty) {
                   return Center(
                     child: Text(AppLocalizations.of(context)!.noResults),
                   );
+                }
 
                 return ListView.builder(
                   itemCount: txs.length,

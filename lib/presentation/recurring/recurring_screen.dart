@@ -30,7 +30,7 @@ class RecurringScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.recurringTransactions)),
       body: asyncData.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text('Error: $err')),
         data: (rules) {
           if (rules.isEmpty) {
@@ -38,7 +38,7 @@ class RecurringScreen extends ConsumerWidget {
               icon: Icons.repeat,
               title: 'No Recurring Transactions',
               message: 'Automate your regular income and expenses.',
-              actionLabel: 'Add Recurring',
+              actionLabel: l10n.addRecurring,
               onAction: () => _showAddRecurringSheet(context, ref),
             );
           }
@@ -59,8 +59,8 @@ class RecurringScreen extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _showAddRecurringSheet(context, ref),
-        icon: const Icon(Icons.add),
-        label: const Text('Add Recurring'),
+        icon: Icon(Icons.add),
+        label: Text(l10n.addRecurring),
         backgroundColor: AppTheme.lightTheme.colorScheme.primary,
         foregroundColor: Colors.white,
       ),
@@ -85,6 +85,7 @@ class _RecurringCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final isIncome = rule.type.name == 'income';
     final color = isIncome ? AppTheme.success : AppTheme.error;
 
@@ -113,7 +114,7 @@ class _RecurringCard extends StatelessWidget {
                         size: 16,
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -139,7 +140,7 @@ class _RecurringCard extends StatelessWidget {
                   children: [
                     Switch(
                       value: rule.isActive,
-                      activeColor: AppTheme.lightTheme.colorScheme.primary,
+                      activeThumbColor: AppTheme.lightTheme.colorScheme.primary,
                       onChanged: (val) async {
                         await ref
                             .read(recurringTransactionRepositoryProvider)
@@ -150,25 +151,25 @@ class _RecurringCard extends StatelessWidget {
                       },
                     ),
                     PopupMenuButton<String>(
-                      icon: const Icon(Icons.more_vert, size: 20),
+                      icon: Icon(Icons.more_vert, size: 20),
                       onSelected: (value) async {
                         if (value == 'delete') {
                           final confirm = await showDialog<bool>(
                             context: context,
                             builder: (ctx) => AlertDialog(
-                              title: const Text('Delete Recurring'),
-                              content: const Text(
-                                'Are you sure you want to delete this automation? Past transactions will remain.',
+                              title: Text(l10n.deleteRecurring),
+                              content: Text(
+                                l10n.deleteRecurringConfirm,
                               ),
                               actions: [
                                 TextButton(
                                   onPressed: () => Navigator.pop(ctx, false),
-                                  child: const Text('Cancel'),
+                                  child: Text(l10n.cancel),
                                 ),
                                 TextButton(
                                   onPressed: () => Navigator.pop(ctx, true),
-                                  child: const Text(
-                                    'Delete',
+                                  child: Text(
+                                    l10n.delete,
                                     style: TextStyle(color: Colors.red),
                                   ),
                                 ),
@@ -187,7 +188,7 @@ class _RecurringCard extends StatelessWidget {
                         const PopupMenuItem(
                           value: 'delete',
                           child: Text(
-                            'Delete',
+                            l10n.delete,
                             style: TextStyle(color: Colors.red),
                           ),
                         ),
@@ -197,7 +198,7 @@ class _RecurringCard extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -206,13 +207,13 @@ class _RecurringCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Amount',
+                      l10n.amount,
                       style: TextStyle(
                         color: AppTheme.textSecondary,
                         fontSize: 13,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4),
                     AmountDisplay(
                       amount: rule.amount,
                       currencyCode: rule.currency.code,
@@ -228,13 +229,13 @@ class _RecurringCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      'Next Date',
+                      l10n.nextDate,
                       style: TextStyle(
                         color: AppTheme.textSecondary,
                         fontSize: 13,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4),
                     Text(
                       DateFormat.yMd().format(rule.nextOccurrence),
                       style: const TextStyle(

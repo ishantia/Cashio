@@ -56,7 +56,7 @@ class BudgetsScreen extends ConsumerWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _showAddBudgetDialog(context, ref),
         icon: const Icon(Icons.add),
-        label: const Text('Add Budget'),
+        label: Text(l10n.addBudget),
         backgroundColor: AppTheme.lightTheme.colorScheme.primary,
         foregroundColor: Colors.white,
       ),
@@ -79,6 +79,7 @@ class _BudgetCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     // We need to calculate how much has been spent.
     // In the old code it was fetching transactions. Let's do it cleanly using the transaction repository.
     final txRepo = ref.watch(transactionRepositoryProvider);
@@ -123,9 +124,9 @@ class _BudgetCard extends StatelessWidget {
         final double safeProgress = progress > 1.0 ? 1.0 : progress;
 
         Color progressColor = AppTheme.success;
-        if (progress > 0.9)
+        if (progress > 0.9) {
           progressColor = AppTheme.error;
-        else if (progress > 0.75)
+        } else if (progress > 0.75)
           progressColor = Colors.orange;
 
         return AppCard(
@@ -161,8 +162,8 @@ class _BudgetCard extends StatelessWidget {
                               color: Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: const Text(
-                              'DISABLED',
+                            child: Text(
+                              l10n.disabled,
                               style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
@@ -189,20 +190,20 @@ class _BudgetCard extends StatelessWidget {
                               final confirm = await showDialog<bool>(
                                 context: context,
                                 builder: (ctx) => AlertDialog(
-                                  title: const Text('Delete Budget'),
-                                  content: const Text(
-                                    'Are you sure you want to delete this budget?',
+                                  title: Text(l10n.deleteBudget),
+                                  content: Text(
+                                    l10n.deleteBudgetConfirm,
                                   ),
                                   actions: [
                                     TextButton(
                                       onPressed: () =>
                                           Navigator.pop(ctx, false),
-                                      child: const Text('Cancel'),
+                                      child: Text(l10n.cancel),
                                     ),
                                     TextButton(
                                       onPressed: () => Navigator.pop(ctx, true),
-                                      child: const Text(
-                                        'Delete',
+                                      child: Text(
+                                        l10n.delete,
                                         style: TextStyle(color: Colors.red),
                                       ),
                                     ),
@@ -218,9 +219,10 @@ class _BudgetCard extends StatelessWidget {
                             }
                           },
                           itemBuilder: (BuildContext context) => [
-                            const PopupMenuItem(
+    final l10n = AppLocalizations.of(context)!;
+                            PopupMenuItem(
                               value: 'edit',
-                              child: Text('Edit'),
+                              child: Text(l10n.edit),
                             ),
                             PopupMenuItem(
                               value: 'toggle',
@@ -231,7 +233,7 @@ class _BudgetCard extends StatelessWidget {
                             const PopupMenuItem(
                               value: 'delete',
                               child: Text(
-                                'Delete',
+                                l10n.delete,
                                 style: TextStyle(color: Colors.red),
                               ),
                             ),
@@ -251,7 +253,7 @@ class _BudgetCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Spent',
+                          l10n.spent,
                           style: TextStyle(
                             color: AppTheme.textSecondary,
                             fontSize: 13,
@@ -321,7 +323,7 @@ class _BudgetCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'of ',
+                      l10n.ofText,
                       style: TextStyle(
                         fontSize: 12,
                         color: AppTheme.textSecondary,

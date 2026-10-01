@@ -1,3 +1,4 @@
+import '../../l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
@@ -14,10 +15,11 @@ class CategoriesScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final categoriesAsync = ref.watch(categoriesListProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Categories')),
+      appBar: AppBar(title: Text(l10n.categories)),
       body: categoriesAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text('Error: $err')),
@@ -27,7 +29,7 @@ class CategoriesScreen extends ConsumerWidget {
               icon: Icons.category_outlined,
               title: 'No Categories',
               message: 'Add categories to organize your transactions.',
-              actionLabel: 'Add Category',
+              actionLabel: l10n.addCategory,
               onAction: () => _showAddCategorySheet(context, ref),
             );
           }
@@ -101,12 +103,12 @@ class CategoriesScreen extends ConsumerWidget {
                         itemBuilder: (context) => [
                           const PopupMenuItem(
                             value: 'edit',
-                            child: Text('Edit'),
+                            child: Text(l10n.edit),
                           ),
                           const PopupMenuItem(
                             value: 'delete',
                             child: Text(
-                              'Delete',
+                              l10n.delete,
                               style: TextStyle(color: Colors.red),
                             ),
                           ),
@@ -123,7 +125,7 @@ class CategoriesScreen extends ConsumerWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _showAddCategorySheet(context, ref),
         icon: const Icon(Icons.add),
-        label: const Text('Add Category'),
+        label: Text(l10n.addCategory),
         backgroundColor: AppTheme.lightTheme.colorScheme.primary,
         foregroundColor: Colors.white,
       ),
@@ -198,6 +200,7 @@ class _AddCategorySheetState extends State<_AddCategorySheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
 
     return Container(
@@ -228,22 +231,22 @@ class _AddCategorySheetState extends State<_AddCategorySheet> {
               ),
             ),
             Text(
-              widget.existing == null ? 'Add Category' : 'Edit Category',
+              widget.existing == null ? l10n.addCategory : 'Edit Category',
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 24),
 
-            const Text('Type', style: TextStyle(fontWeight: FontWeight.w500)),
+            Text(l10n.type, style: TextStyle(fontWeight: FontWeight.w500)),
             const SizedBox(height: 8),
             SegmentedButton<CategoryType>(
               segments: const [
                 ButtonSegment(
                   value: CategoryType.expense,
-                  label: Text('Expense'),
+                  label: Text(l10n.expense),
                 ),
                 ButtonSegment(
                   value: CategoryType.income,
-                  label: Text('Income'),
+                  label: Text(l10n.income),
                 ),
               ],
               selected: {_selectedType},
@@ -257,16 +260,16 @@ class _AddCategorySheetState extends State<_AddCategorySheet> {
             ),
             const SizedBox(height: 16),
 
-            const Text('Name', style: TextStyle(fontWeight: FontWeight.w500)),
+            Text(l10n.name, style: TextStyle(fontWeight: FontWeight.w500)),
             const SizedBox(height: 8),
             TextField(
               controller: _nameController,
-              decoration: const InputDecoration(hintText: 'e.g. Groceries'),
+              decoration: InputDecoration(hintText: l10n.egGroceries),
               autofocus: widget.existing == null,
             ),
             const SizedBox(height: 16),
 
-            const Text('Color', style: TextStyle(fontWeight: FontWeight.w500)),
+            Text(l10n.color, style: TextStyle(fontWeight: FontWeight.w500)),
             const SizedBox(height: 8),
             Wrap(
               spacing: 12,
@@ -296,7 +299,7 @@ class _AddCategorySheetState extends State<_AddCategorySheet> {
             ),
             const SizedBox(height: 16),
 
-            const Text('Icon', style: TextStyle(fontWeight: FontWeight.w500)),
+            Text(l10n.icon, style: TextStyle(fontWeight: FontWeight.w500)),
             const SizedBox(height: 8),
             Wrap(
               spacing: 12,
@@ -337,7 +340,7 @@ class _AddCategorySheetState extends State<_AddCategorySheet> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: _save,
-                child: const Text('Save Category'),
+                child: Text(l10n.saveCategory),
               ),
             ),
             const SizedBox(height: 24),

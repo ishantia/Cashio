@@ -33,7 +33,7 @@ class SqfliteCsvExportService implements CsvExportService {
       'Date,Type,Amount,Currency,Account,Category,Note,Transfer ID,Debt ID,Recurring ID',
     );
 
-    String _escapeCsv(String value) {
+    String escapeCsv(String value) {
       if (value.contains(',') || value.contains('"') || value.contains('\n')) {
         final escaped = value.replaceAll('"', '""');
         return '"$escaped"';
@@ -46,12 +46,12 @@ class SqfliteCsvExportService implements CsvExportService {
       final type = row['type']?.toString() ?? '';
       final amount = row['amount']?.toString() ?? '';
       final currency = row['currency_code']?.toString() ?? '';
-      final acc = _escapeCsv(row['account_name']?.toString() ?? '');
-      final cat = _escapeCsv(row['category_name']?.toString() ?? '');
-      final note = _escapeCsv(row['note']?.toString() ?? '');
-      final tId = _escapeCsv(row['transfer_id']?.toString() ?? '');
-      final dId = _escapeCsv(row['debt_id']?.toString() ?? '');
-      final rId = _escapeCsv(row['recurring_id']?.toString() ?? '');
+      final acc = escapeCsv(row['account_name']?.toString() ?? '');
+      final cat = escapeCsv(row['category_name']?.toString() ?? '');
+      final note = escapeCsv(row['note']?.toString() ?? '');
+      final tId = escapeCsv(row['transfer_id']?.toString() ?? '');
+      final dId = escapeCsv(row['debt_id']?.toString() ?? '');
+      final rId = escapeCsv(row['recurring_id']?.toString() ?? '');
 
       buffer.writeln(
         "$date,$type,$amount,$currency,$acc,$cat,$note,$tId,$dId,$rId",

@@ -1,3 +1,4 @@
+import '../../l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -7,7 +8,6 @@ import 'package:uuid/uuid.dart';
 import '../../domain/models/transaction.dart';
 import '../../domain/models/account.dart';
 import '../../domain/models/category.dart';
-import '../../domain/models/currency.dart';
 import '../../core/providers.dart';
 import '../providers/data_providers.dart';
 import '../dashboard/dashboard_provider.dart';
@@ -40,6 +40,7 @@ class _AddTransactionSheetState extends ConsumerState<AddTransactionSheet>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return DraggableScrollableSheet(
       initialChildSize: 0.9,
       minChildSize: 0.5,
@@ -87,14 +88,14 @@ class _AddTransactionSheetState extends ConsumerState<AddTransactionSheet>
                   ),
                   labelColor: Theme.of(context).colorScheme.onSurface,
                   unselectedLabelColor: AppTheme.textSecondary,
-                  tabs: const [
-                    Tab(text: 'Expense'),
-                    Tab(text: 'Income'),
-                    Tab(text: 'Transfer'),
+                  tabs: [
+                    Tab(text: l10n.expense),
+                    Tab(text: l10n.income),
+                    Tab(text: l10n.transfer),
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
@@ -182,6 +183,7 @@ class _TransactionFormState extends ConsumerState<_TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final accountsAsync = ref.watch(accountsListProvider);
     final categoriesAsync = ref.watch(categoriesListProvider);
 
@@ -189,8 +191,8 @@ class _TransactionFormState extends ConsumerState<_TransactionForm> {
       controller: widget.scrollController,
       padding: const EdgeInsets.all(16),
       children: [
-        const Text('Amount', style: TextStyle(fontWeight: FontWeight.w500)),
-        const SizedBox(height: 8),
+        Text(l10n.amount, style: TextStyle(fontWeight: FontWeight.w500)),
+        SizedBox(height: 8),
         TextField(
           controller: _amountController,
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
@@ -201,22 +203,22 @@ class _TransactionFormState extends ConsumerState<_TransactionForm> {
             hintText: '0',
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
 
-        const Text('Account', style: TextStyle(fontWeight: FontWeight.w500)),
-        const SizedBox(height: 8),
+        Text(l10n.account, style: TextStyle(fontWeight: FontWeight.w500)),
+        SizedBox(height: 8),
         accountsAsync.when(
           loading: () => const LinearProgressIndicator(),
-          error: (e, s) => const Text('Error'),
+          error: (e, s) => Text(l10n.error),
           data: (accounts) => InputDecorator(
             decoration: const InputDecoration(
               contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             ),
             child: DropdownButton<Account>(
               value: _selectedAccount,
-              hint: const Text('Select Account'),
+              hint: Text(l10n.selectAccount),
               isExpanded: true,
-              underline: const SizedBox(),
+              underline: SizedBox(),
               items: accounts
                   .map(
                     (a) => DropdownMenuItem(
@@ -229,13 +231,13 @@ class _TransactionFormState extends ConsumerState<_TransactionForm> {
             ),
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
 
-        const Text('Category', style: TextStyle(fontWeight: FontWeight.w500)),
-        const SizedBox(height: 8),
+        Text(l10n.category, style: TextStyle(fontWeight: FontWeight.w500)),
+        SizedBox(height: 8),
         categoriesAsync.when(
           loading: () => const LinearProgressIndicator(),
-          error: (e, s) => const Text('Error'),
+          error: (e, s) => Text(l10n.error),
           data: (categories) {
             // Filter categories based on transaction type if they have a type
             final filtered = categories
@@ -256,8 +258,8 @@ class _TransactionFormState extends ConsumerState<_TransactionForm> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     _selectedCategory == null
-                        ? const Text(
-                            'Select Category',
+                        ? Text(
+                            l10n.selectCategory,
                             style: TextStyle(color: AppTheme.textSecondary),
                           )
                         : Row(
@@ -283,7 +285,7 @@ class _TransactionFormState extends ConsumerState<_TransactionForm> {
                                   color: Colors.white,
                                 ),
                               ),
-                              const SizedBox(width: 8),
+                              SizedBox(width: 8),
                               Text(
                                 _selectedCategory!.name,
                                 style: const TextStyle(
@@ -292,7 +294,7 @@ class _TransactionFormState extends ConsumerState<_TransactionForm> {
                               ),
                             ],
                           ),
-                    const Icon(
+                    Icon(
                       Icons.keyboard_arrow_down,
                       color: AppTheme.textSecondary,
                     ),
@@ -302,7 +304,7 @@ class _TransactionFormState extends ConsumerState<_TransactionForm> {
             );
           },
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
 
         Row(
           children: [
@@ -310,11 +312,11 @@ class _TransactionFormState extends ConsumerState<_TransactionForm> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Date',
+                  Text(
+                    l10n.date,
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   InkWell(
                     onTap: () async {
                       final date = await showDatePicker(
@@ -335,28 +337,29 @@ class _TransactionFormState extends ConsumerState<_TransactionForm> {
             ),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
 
-        const Text(
-          'Note (optional)',
+        Text(
+          l10n.noteOptional,
           style: TextStyle(fontWeight: FontWeight.w500),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         TextField(
           controller: _noteController,
-          decoration: const InputDecoration(hintText: 'What was this for?'),
+          decoration: InputDecoration(hintText: l10n.whatWasThisFor),
         ),
-        const SizedBox(height: 32),
+        SizedBox(height: 32),
         ElevatedButton(
           onPressed: _selectedAccount == null ? null : _save,
-          child: const Text('Save'),
+          child: Text(l10n.save),
         ),
-        const SizedBox(height: 32),
+        SizedBox(height: 32),
       ],
     );
   }
 
   void _showCategoryPicker(BuildContext context, List<Category> categories) {
+    final l10n = AppLocalizations.of(context)!;
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -367,19 +370,19 @@ class _TransactionFormState extends ConsumerState<_TransactionForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
-                  'Select Category',
+                  l10n.selectCategory,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               if (categories.isEmpty)
-                const Expanded(
+                Expanded(
                   child: Center(
                     child: Text(
-                      'No categories found for this type.\nCreate one in the Categories tab!',
+                      l10n.noCategoriesFound,
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.grey),
                     ),
@@ -414,7 +417,7 @@ class _TransactionFormState extends ConsumerState<_TransactionForm> {
                               width: 56,
                               height: 56,
                               decoration: BoxDecoration(
-                                color: color.withOpacity(0.1),
+                                color: color.withValues(alpha: 0.1),
                                 shape: BoxShape.circle,
                                 border: Border.all(
                                   color: _selectedCategory?.id == c.id
@@ -433,7 +436,7 @@ class _TransactionFormState extends ConsumerState<_TransactionForm> {
                                 size: 28,
                               ),
                             ),
-                            const SizedBox(height: 8),
+                            SizedBox(height: 8),
                             Text(
                               c.name,
                               textAlign: TextAlign.center,
@@ -487,8 +490,9 @@ class _TransferFormState extends ConsumerState<_TransferForm> {
   void _save() async {
     if (_fromAccount == null ||
         _toAccount == null ||
-        _amountController.text.isEmpty)
+        _amountController.text.isEmpty) {
       return;
+    }
     if (_fromAccount!.id == _toAccount!.id) return;
 
     final amountText = _amountController.text.replaceAll(',', '');
@@ -540,14 +544,15 @@ class _TransferFormState extends ConsumerState<_TransferForm> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final accountsAsync = ref.watch(accountsListProvider);
 
     return ListView(
       controller: widget.scrollController,
       padding: const EdgeInsets.all(16),
       children: [
-        const Text('Amount', style: TextStyle(fontWeight: FontWeight.w500)),
-        const SizedBox(height: 8),
+        Text(l10n.amount, style: TextStyle(fontWeight: FontWeight.w500)),
+        SizedBox(height: 8),
         TextField(
           controller: _amountController,
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
@@ -555,7 +560,7 @@ class _TransferFormState extends ConsumerState<_TransferForm> {
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           decoration: const InputDecoration(hintText: '0'),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
 
         Row(
           children: [
@@ -563,14 +568,14 @@ class _TransferFormState extends ConsumerState<_TransferForm> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'From',
+                  Text(
+                    l10n.fromText,
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   accountsAsync.when(
                     loading: () => const LinearProgressIndicator(),
-                    error: (e, s) => const Text('Error'),
+                    error: (e, s) => Text(l10n.error),
                     data: (accounts) => InputDecorator(
                       decoration: const InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
@@ -580,9 +585,9 @@ class _TransferFormState extends ConsumerState<_TransferForm> {
                       ),
                       child: DropdownButton<Account>(
                         value: _fromAccount,
-                        hint: const Text('Account'),
+                        hint: Text(l10n.account),
                         isExpanded: true,
-                        underline: const SizedBox(),
+                        underline: SizedBox(),
                         items: accounts
                             .map(
                               (a) => DropdownMenuItem(
@@ -601,19 +606,19 @@ class _TransferFormState extends ConsumerState<_TransferForm> {
                 ],
               ),
             ),
-            const SizedBox(width: 16),
+            SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'To',
+                  Text(
+                    l10n.to,
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   accountsAsync.when(
                     loading: () => const LinearProgressIndicator(),
-                    error: (e, s) => const Text('Error'),
+                    error: (e, s) => Text(l10n.error),
                     data: (accounts) => InputDecorator(
                       decoration: const InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
@@ -623,9 +628,9 @@ class _TransferFormState extends ConsumerState<_TransferForm> {
                       ),
                       child: DropdownButton<Account>(
                         value: _toAccount,
-                        hint: const Text('Account'),
+                        hint: Text(l10n.account),
                         isExpanded: true,
-                        underline: const SizedBox(),
+                        underline: SizedBox(),
                         items: accounts
                             .map(
                               (a) => DropdownMenuItem(
@@ -646,7 +651,7 @@ class _TransferFormState extends ConsumerState<_TransferForm> {
             ),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
 
         Row(
           children: [
@@ -654,11 +659,11 @@ class _TransferFormState extends ConsumerState<_TransferForm> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Date',
+                  Text(
+                    l10n.date,
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   InkWell(
                     onTap: () async {
                       final date = await showDatePicker(
@@ -679,25 +684,25 @@ class _TransferFormState extends ConsumerState<_TransferForm> {
             ),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
 
-        const Text(
-          'Note (optional)',
+        Text(
+          l10n.noteOptional,
           style: TextStyle(fontWeight: FontWeight.w500),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8),
         TextField(
           controller: _noteController,
-          decoration: const InputDecoration(hintText: 'What was this for?'),
+          decoration: InputDecoration(hintText: l10n.whatWasThisFor),
         ),
-        const SizedBox(height: 32),
+        SizedBox(height: 32),
         ElevatedButton(
           onPressed: (_fromAccount == null || _toAccount == null)
               ? null
               : _save,
-          child: const Text('Transfer'),
+          child: Text(l10n.transfer),
         ),
-        const SizedBox(height: 32),
+        SizedBox(height: 32),
       ],
     );
   }

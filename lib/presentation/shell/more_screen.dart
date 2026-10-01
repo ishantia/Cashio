@@ -23,7 +23,7 @@ class MoreScreen extends StatelessWidget {
             l10n.accounts,
             '/more/accounts',
           ),
-          _buildItem(context, Icons.category, 'Categories', '/more/categories'),
+          _buildItem(context, Icons.category, l10n.categories, '/more/categories'),
           _buildItem(context, Icons.money_off, l10n.debts, '/more/debts'),
           _buildItem(
             context,

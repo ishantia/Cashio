@@ -557,6 +557,564 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Debts & Loans'**
   String get debtsAndLoans;
+
+  /// No description provided for @apiToken.
+  ///
+  /// In en, this message translates to:
+  /// **'API Token'**
+  String get apiToken;
+
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @accountName.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Name'**
+  String get accountName;
+
+  /// No description provided for @add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get add;
+
+  /// No description provided for @addCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Category'**
+  String get addCategory;
+
+  /// No description provided for @addDebt.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Debt'**
+  String get addDebt;
+
+  /// No description provided for @addRecurring.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Recurring'**
+  String get addRecurring;
+
+  /// No description provided for @addRecurringTransaction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Recurring Transaction'**
+  String get addRecurringTransaction;
+
+  /// No description provided for @advancedFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced Filters'**
+  String get advancedFilters;
+
+  /// No description provided for @automaticBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic Backup'**
+  String get automaticBackup;
+
+  /// No description provided for @backupFrequencyDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Approximately every 24 hours'**
+  String get backupFrequencyDesc;
+
+  /// No description provided for @deleteRecurringConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this automation? Past transactions will remain.'**
+  String get deleteRecurringConfirm;
+
+  /// No description provided for @deleteBudgetConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this budget?'**
+  String get deleteBudgetConfirm;
+
+  /// No description provided for @deleteBackupConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this cloud backup?'**
+  String get deleteBackupConfirm;
+
+  /// No description provided for @deleteDebtConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this debt? Transactions linked to it will not be deleted, but the link will be lost.'**
+  String get deleteDebtConfirm;
+
+  /// No description provided for @deleteTransactionConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this transaction?'**
+  String get deleteTransactionConfirm;
+
+  /// No description provided for @backupHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup History:'**
+  String get backupHistory;
+
+  /// No description provided for @backupNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup Now'**
+  String get backupNow;
+
+  /// No description provided for @cashFlow.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash Flow'**
+  String get cashFlow;
+
+  /// No description provided for @categories.
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get categories;
+
+  /// No description provided for @category.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get category;
+
+  /// No description provided for @cloudBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloud Backup'**
+  String get cloudBackup;
+
+  /// No description provided for @color.
+  ///
+  /// In en, this message translates to:
+  /// **'Color'**
+  String get color;
+
+  /// No description provided for @configureCloudBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Configure Cloud Backup'**
+  String get configureCloudBackup;
+
+  /// No description provided for @configureSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Configure Settings'**
+  String get configureSettings;
+
+  /// No description provided for @currency.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency'**
+  String get currency;
+
+  /// No description provided for @date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get date;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @deleteDebt.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Debt'**
+  String get deleteDebt;
+
+  /// No description provided for @deleteRecurring.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Recurring'**
+  String get deleteRecurring;
+
+  /// No description provided for @deleteTransaction.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Transaction?'**
+  String get deleteTransaction;
+
+  /// No description provided for @deleteBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete backup?'**
+  String get deleteBackup;
+
+  /// No description provided for @dueDateOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Due Date (Optional)'**
+  String get dueDateOptional;
+
+  /// No description provided for @dueDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Due: '**
+  String get dueDate;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @encryptionPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Encryption Password'**
+  String get encryptionPassword;
+
+  /// No description provided for @errorLoadingAccounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading accounts'**
+  String get errorLoadingAccounts;
+
+  /// No description provided for @expenses.
+  ///
+  /// In en, this message translates to:
+  /// **'Expenses'**
+  String get expenses;
+
+  /// No description provided for @fromText.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get fromText;
+
+  /// No description provided for @iOwe.
+  ///
+  /// In en, this message translates to:
+  /// **'I Owe'**
+  String get iOwe;
+
+  /// No description provided for @icon.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get icon;
+
+  /// No description provided for @initialBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'Initial Balance'**
+  String get initialBalance;
+
+  /// No description provided for @maxAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Max Amount'**
+  String get maxAmount;
+
+  /// No description provided for @minAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Min Amount'**
+  String get minAmount;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @netFlow.
+  ///
+  /// In en, this message translates to:
+  /// **'Net Flow'**
+  String get netFlow;
+
+  /// No description provided for @netWorth.
+  ///
+  /// In en, this message translates to:
+  /// **'Net Worth'**
+  String get netWorth;
+
+  /// No description provided for @newAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'New Account'**
+  String get newAccount;
+
+  /// No description provided for @nextDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Date'**
+  String get nextDate;
+
+  /// No description provided for @noAccountsSetUp.
+  ///
+  /// In en, this message translates to:
+  /// **'No accounts set up.'**
+  String get noAccountsSetUp;
+
+  /// No description provided for @noCategoriesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No categories found for this type.\\nCreate one in the Categories tab!'**
+  String get noCategoriesFound;
+
+  /// No description provided for @noteOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Note (Optional)'**
+  String get noteOptional;
+
+  /// No description provided for @noteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Note / Title'**
+  String get noteTitle;
+
+  /// No description provided for @owesMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Owes Me'**
+  String get owesMe;
+
+  /// No description provided for @personEntityName.
+  ///
+  /// In en, this message translates to:
+  /// **'Person / Entity Name'**
+  String get personEntityName;
+
+  /// No description provided for @recentTransactions.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent Transactions'**
+  String get recentTransactions;
+
+  /// No description provided for @recordDebt.
+  ///
+  /// In en, this message translates to:
+  /// **'Record Debt'**
+  String get recordDebt;
+
+  /// No description provided for @repeats.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeats'**
+  String get repeats;
+
+  /// No description provided for @restoreThisBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore this backup?'**
+  String get restoreThisBackup;
+
+  /// No description provided for @saveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Account'**
+  String get saveAccount;
+
+  /// No description provided for @saveCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Category'**
+  String get saveCategory;
+
+  /// No description provided for @saveDebt.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Debt'**
+  String get saveDebt;
+
+  /// No description provided for @saveRule.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Rule'**
+  String get saveRule;
+
+  /// No description provided for @seeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See All'**
+  String get seeAll;
+
+  /// No description provided for @selectAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Account'**
+  String get selectAccount;
+
+  /// No description provided for @selectCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Category'**
+  String get selectCategory;
+
+  /// No description provided for @spendingByCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Spending by Category'**
+  String get spendingByCategory;
+
+  /// No description provided for @startDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Date'**
+  String get startDate;
+
+  /// No description provided for @to.
+  ///
+  /// In en, this message translates to:
+  /// **'To'**
+  String get to;
+
+  /// No description provided for @topSpending.
+  ///
+  /// In en, this message translates to:
+  /// **'Top Spending'**
+  String get topSpending;
+
+  /// No description provided for @total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total: '**
+  String get total;
+
+  /// No description provided for @transactionDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction deleted'**
+  String get transactionDeleted;
+
+  /// No description provided for @type.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get type;
+
+  /// No description provided for @userId.
+  ///
+  /// In en, this message translates to:
+  /// **'User ID'**
+  String get userId;
+
+  /// No description provided for @whatWasThisFor.
+  ///
+  /// In en, this message translates to:
+  /// **'What was this for?'**
+  String get whatWasThisFor;
+
+  /// No description provided for @workerUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Worker URL'**
+  String get workerUrl;
+
+  /// No description provided for @restoreBackupWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Your current local data will be replaced by the selected backup.'**
+  String get restoreBackupWarning;
+
+  /// No description provided for @egForDinner.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. For dinner last night'**
+  String get egForDinner;
+
+  /// No description provided for @egGroceries.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Groceries'**
+  String get egGroceries;
+
+  /// No description provided for @egJohnDoe.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. John Doe'**
+  String get egJohnDoe;
+
+  /// No description provided for @egMainWallet.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Main Wallet'**
+  String get egMainWallet;
+
+  /// No description provided for @egNetflix.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Netflix Subscription'**
+  String get egNetflix;
+
+  /// No description provided for @egPartialPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Partial payment'**
+  String get egPartialPayment;
+
+  /// No description provided for @ofText.
+  ///
+  /// In en, this message translates to:
+  /// **'of'**
+  String get ofText;
+
+  /// No description provided for @thisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'This Week'**
+  String get thisWeek;
+
+  /// No description provided for @thisMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'This Month'**
+  String get thisMonth;
+
+  /// No description provided for @thisYear.
+  ///
+  /// In en, this message translates to:
+  /// **'This Year'**
+  String get thisYear;
+
+  /// No description provided for @today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
+
+  /// No description provided for @custom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get custom;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @status.
+  ///
+  /// In en, this message translates to:
+  /// **'Status: '**
+  String get status;
+
+  /// No description provided for @noReportsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No reports yet'**
+  String get noReportsYet;
+
+  /// No description provided for @addTransactionsToSee.
+  ///
+  /// In en, this message translates to:
+  /// **'Add some transactions to see your financial activity.'**
+  String get addTransactionsToSee;
 }
 
 class _AppLocalizationsDelegate

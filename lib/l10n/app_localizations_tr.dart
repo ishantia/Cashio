@@ -68,5 +68,5 @@ class AppLocalizationsTr extends AppLocalizations {
   String get expense => 'Gider';
 
   @override
-  String get transfer => 'Transfer';
+  String get transfer => l10n.transfer;
 }

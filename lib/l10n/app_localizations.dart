@@ -213,19 +213,19 @@ abstract class AppLocalizations {
   /// No description provided for @income.
   ///
   /// In en, this message translates to:
-  /// **'Income'**
+  /// **l10n.income**
   String get income;
 
   /// No description provided for @expense.
   ///
   /// In en, this message translates to:
-  /// **'Expense'**
+  /// **l10n.expense**
   String get expense;
 
   /// No description provided for @transfer.
   ///
   /// In en, this message translates to:
-  /// **'Transfer'**
+  /// **l10n.transfer**
   String get transfer;
 }
 

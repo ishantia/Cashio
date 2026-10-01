@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/providers.dart';
 import '../../domain/models/transaction.dart';
-import '../../domain/models/currency.dart';
 
 enum DashboardPeriod { today, thisWeek, thisMonth, thisYear, custom }
 

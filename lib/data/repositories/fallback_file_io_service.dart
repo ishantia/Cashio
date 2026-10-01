@@ -21,7 +21,7 @@ class FallbackFileIoService implements FileIoService {
     } catch (e) {
       // Fallback for missing SAF or headless tests
       final dir = await getApplicationDocumentsDirectory();
-      final f = File(dir.path + '/cashio_backup.json');
+      final f = File('${dir.path}/cashio_backup.json');
       if (await f.exists()) return f.path;
     }
     return null;
@@ -46,7 +46,7 @@ class FallbackFileIoService implements FileIoService {
     } catch (e) {
       // Fallback
       final dir = await getApplicationDocumentsDirectory();
-      final file = File(dir.path + '/' + fileName);
+      final file = File('${dir.path}/$fileName');
       await file.writeAsString(content);
       return file.path;
     }

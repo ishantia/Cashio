@@ -31,7 +31,7 @@ class DebtsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.debtsAndLoans)),
       body: debtsAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text('Error: $err')),
         data: (debts) {
           if (debts.isEmpty) {
@@ -39,7 +39,7 @@ class DebtsScreen extends ConsumerWidget {
               icon: Icons.handshake_outlined,
               title: 'No Debts',
               message: l10n.noDebtsRecorded,
-              actionLabel: 'Record Debt',
+              actionLabel: l10n.recordDebt,
               onAction: () => _showAddDebtDialog(context, ref),
             );
           }
@@ -60,8 +60,8 @@ class DebtsScreen extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _showAddDebtDialog(context, ref),
-        icon: const Icon(Icons.add),
-        label: const Text('Add Debt'),
+        icon: Icon(Icons.add),
+        label: Text(l10n.addDebt),
         backgroundColor: AppTheme.lightTheme.colorScheme.primary,
         foregroundColor: Colors.white,
       ),
@@ -127,7 +127,7 @@ class _DebtCard extends StatelessWidget {
                           size: 16,
                         ),
                       ),
-                      const SizedBox(width: 12),
+                      SizedBox(width: 12),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -150,25 +150,25 @@ class _DebtCard extends StatelessWidget {
                     ],
                   ),
                   PopupMenuButton<String>(
-                    icon: const Icon(Icons.more_vert, size: 20),
+                    icon: Icon(Icons.more_vert, size: 20),
                     onSelected: (value) async {
                       if (value == 'delete') {
                         final confirm = await showDialog<bool>(
                           context: context,
                           builder: (ctx) => AlertDialog(
-                            title: const Text('Delete Debt'),
-                            content: const Text(
-                              'Are you sure you want to delete this debt? Transactions linked to it will not be deleted, but the link will be lost.',
+                            title: Text(l10n.deleteDebt),
+                            content: Text(
+                              l10n.deleteDebtConfirm,
                             ),
                             actions: [
                               TextButton(
                                 onPressed: () => Navigator.pop(ctx, false),
-                                child: const Text('Cancel'),
+                                child: Text(l10n.cancel),
                               ),
                               TextButton(
                                 onPressed: () => Navigator.pop(ctx, true),
-                                child: const Text(
-                                  'Delete',
+                                child: Text(
+                                  l10n.delete,
                                   style: TextStyle(color: Colors.red),
                                 ),
                               ),
@@ -187,7 +187,7 @@ class _DebtCard extends StatelessWidget {
                       const PopupMenuItem(
                         value: 'delete',
                         child: Text(
-                          'Delete',
+                          l10n.delete,
                           style: TextStyle(color: Colors.red),
                         ),
                       ),
@@ -195,7 +195,7 @@ class _DebtCard extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -216,7 +216,7 @@ class _DebtCard extends StatelessWidget {
                               : FontWeight.normal,
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      SizedBox(height: 4),
                       AmountDisplay(
                         amount: remaining > 0 ? remaining : 0,
                         currencyCode: debt.currency.code,
@@ -250,13 +250,13 @@ class _DebtCard extends StatelessWidget {
                           vertical: 8,
                         ),
                       ),
-                      icon: const Icon(Icons.payment, size: 16),
+                      icon: Icon(Icons.payment, size: 16),
                       label: Text(isIOwe ? 'Pay' : 'Receive'),
                     ),
                 ],
               ),
 
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               ClipRRect(
                 borderRadius: BorderRadius.circular(4),
                 child: LinearProgressIndicator(
@@ -266,7 +266,7 @@ class _DebtCard extends StatelessWidget {
                   minHeight: 6,
                 ),
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -317,6 +317,7 @@ class _DebtPaymentSheetState extends State<_DebtPaymentSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
     final isIOwe = widget.debt.direction == DebtDirection.iOwe;
     final color = isIOwe ? AppTheme.error : AppTheme.success;
@@ -352,10 +353,10 @@ class _DebtPaymentSheetState extends State<_DebtPaymentSheet> {
               isIOwe ? 'Pay Debt' : 'Receive Payment',
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
 
-            const Text('Amount', style: TextStyle(fontWeight: FontWeight.w500)),
-            const SizedBox(height: 8),
+            Text(l10n.amount, style: TextStyle(fontWeight: FontWeight.w500)),
+            SizedBox(height: 8),
             TextField(
               controller: _amountController,
               keyboardType: const TextInputType.numberWithOptions(
@@ -367,21 +368,21 @@ class _DebtPaymentSheetState extends State<_DebtPaymentSheet> {
               ),
               autofocus: true,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
 
-            const Text(
-              'Note (Optional)',
+            Text(
+              l10n.noteOptional,
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             TextField(
               controller: _noteController,
-              decoration: const InputDecoration(
-                hintText: 'e.g. Partial payment',
+              decoration: InputDecoration(
+                hintText: l10n.egPartialPayment,
               ),
             ),
 
-            const SizedBox(height: 32),
+            SizedBox(height: 32),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -390,7 +391,7 @@ class _DebtPaymentSheetState extends State<_DebtPaymentSheet> {
                 child: Text(isIOwe ? 'Record Payment' : 'Record Receipt'),
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
           ],
         ),
       ),

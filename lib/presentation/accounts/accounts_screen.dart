@@ -31,7 +31,7 @@ class AccountsScreen extends ConsumerWidget {
               icon: Icons.account_balance_wallet_outlined,
               title: 'No Accounts',
               message: l10n.noAccountsAddOne,
-              actionLabel: 'Add Account',
+              actionLabel: l10n.addAccount,
               onAction: () => _showAddAccountSheet(context, ref),
             );
           }
@@ -112,7 +112,7 @@ class AccountsScreen extends ConsumerWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _showAddAccountSheet(context, ref),
         icon: const Icon(Icons.add),
-        label: const Text('Add Account'),
+        label: Text(l10n.addAccount),
         backgroundColor: AppTheme.lightTheme.colorScheme.primary,
         foregroundColor: Colors.white,
       ),
@@ -145,6 +145,7 @@ class _AddAccountSheetState extends State<_AddAccountSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
 
     return Container(
@@ -173,26 +174,26 @@ class _AddAccountSheetState extends State<_AddAccountSheet> {
               ),
             ),
           ),
-          const Text(
-            'New Account',
+          Text(
+            l10n.newAccount,
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 24),
 
-          const Text(
-            'Account Name',
+          Text(
+            l10n.accountName,
             style: TextStyle(fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 8),
           TextField(
             controller: _nameController,
-            decoration: const InputDecoration(hintText: 'e.g. Main Wallet'),
+            decoration: InputDecoration(hintText: l10n.egMainWallet),
             autofocus: true,
           ),
           const SizedBox(height: 16),
 
-          const Text(
-            'Initial Balance',
+          Text(
+            l10n.initialBalance,
             style: TextStyle(fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 8),
@@ -203,7 +204,7 @@ class _AddAccountSheetState extends State<_AddAccountSheet> {
           ),
           const SizedBox(height: 16),
 
-          const Text('Currency', style: TextStyle(fontWeight: FontWeight.w500)),
+          Text(l10n.currency, style: TextStyle(fontWeight: FontWeight.w500)),
           const SizedBox(height: 8),
           InputDecorator(
             decoration: const InputDecoration(
@@ -230,7 +231,7 @@ class _AddAccountSheetState extends State<_AddAccountSheet> {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: _save,
-              child: const Text('Save Account'),
+              child: Text(l10n.saveAccount),
             ),
           ),
           const SizedBox(height: 24),

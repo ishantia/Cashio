@@ -1,3 +1,4 @@
+import '../../l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cashio/domain/services/key_management_service.dart';
@@ -106,7 +107,7 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
     } catch (e) {
       setState(() {
         _isLoading = false;
-        _statusMessage = "Failed to list backups: ${e}";
+        _statusMessage = "Failed to list backups: $e";
       });
     }
   }
@@ -140,27 +141,28 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
       await prefs.setString("last_backup_error", e.toString());
       setState(() {
         _isLoading = false;
-        _statusMessage = "Failed: ${e}";
+        _statusMessage = "Failed: $e";
       });
     }
   }
 
   Future<void> _restoreBackup(String id) async {
+    final l10n = AppLocalizations.of(context)!;
     final confirm = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text("Restore this backup?"),
-        content: const Text(
-          "Your current local data will be replaced by the selected backup.",
+        title: Text(l10n.restoreThisBackup),
+        content: Text(
+          l10n.restoreBackupWarning,
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx, false),
-            child: const Text("Cancel"),
+            child: Text(l10n.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(ctx, true),
-            child: const Text("Restore", style: TextStyle(color: Colors.red)),
+            child: Text(l10n.restore, style: TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -181,27 +183,28 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
     } catch (e) {
       setState(() {
         _isLoading = false;
-        _statusMessage = "Failed to restore: ${e}";
+        _statusMessage = "Failed to restore: $e";
       });
     }
   }
 
   Future<void> _deleteBackup(String id) async {
+    final l10n = AppLocalizations.of(context)!;
     final confirm = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text("Delete backup?"),
-        content: const Text(
-          "Are you sure you want to delete this cloud backup?",
+        title: Text(l10n.deleteBackup),
+        content: Text(
+          l10n.deleteBackupConfirm,
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx, false),
-            child: const Text("Cancel"),
+            child: Text(l10n.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(ctx, true),
-            child: const Text("Delete", style: TextStyle(color: Colors.red)),
+            child: Text(l10n.delete, style: TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -222,12 +225,13 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
     } catch (e) {
       setState(() {
         _isLoading = false;
-        _statusMessage = "Failed to delete: ${e}";
+        _statusMessage = "Failed to delete: $e";
       });
     }
   }
 
   Future<void> _showConfigDialog() async {
+    final l10n = AppLocalizations.of(context)!;
     final passwordCtrl = TextEditingController();
     final urlCtrl = TextEditingController();
     final tokenCtrl = TextEditingController();
@@ -236,27 +240,27 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
     await showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text("Configure Cloud Backup"),
+        title: Text(l10n.configureCloudBackup),
         content: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: urlCtrl,
-                decoration: const InputDecoration(labelText: "Worker URL"),
+                decoration: InputDecoration(labelText: l10n.workerUrl),
               ),
               TextField(
                 controller: tokenCtrl,
-                decoration: const InputDecoration(labelText: "API Token"),
+                decoration: InputDecoration(labelText: l10n.apiToken),
               ),
               TextField(
                 controller: userCtrl,
-                decoration: const InputDecoration(labelText: "User ID"),
+                decoration: InputDecoration(labelText: l10n.userId),
               ),
               TextField(
                 controller: passwordCtrl,
                 decoration: const InputDecoration(
-                  labelText: "Encryption Password",
+                  labelText: l10n.encryptionPassword,
                 ),
                 obscureText: true,
               ),
@@ -266,12 +270,13 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text("Cancel"),
+            child: Text(l10n.cancel),
           ),
           TextButton(
             onPressed: () async {
               Navigator.pop(ctx);
               setState(() {
+    final l10n = AppLocalizations.of(context)!;
                 _isLoading = true;
                 _statusMessage = "Configuring...";
               });
@@ -286,7 +291,7 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
               );
               _checkConfig();
             },
-            child: const Text("Save"),
+            child: Text(l10n.save),
           ),
         ],
       ),
@@ -294,13 +299,14 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
   }
 
   String _formatSize(int bytes) {
-    if (bytes < 1024) return "${bytes} B";
+    if (bytes < 1024) return "$bytes B";
     if (bytes < 1024 * 1024) return "${(bytes / 1024).toStringAsFixed(1)} KB";
     return "${(bytes / (1024 * 1024)).toStringAsFixed(1)} MB";
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     DateTime? lastSuccess;
     try {
       final prefs = ref.watch(sharedPreferencesProvider);
@@ -311,26 +317,26 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
     } catch (_) {}
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Cloud Backup")),
+      appBar: AppBar(title: Text(l10n.cloudBackup)),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              "Status: ${_statusMessage}",
+              "Status: $_statusMessage",
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             if (!_isConfigured)
               ElevatedButton(
                 onPressed: _showConfigDialog,
-                child: const Text("Configure Settings"),
+                child: Text(l10n.configureSettings),
               )
             else ...[
               SwitchListTile(
-                title: const Text("Automatic Backup"),
-                subtitle: const Text("Approximately every 24 hours"),
+                title: Text("Automatic Backup"),
+                subtitle: Text(l10n.backupFrequencyDesc),
                 value: _automaticBackupEnabled,
                 onChanged: _toggleAutomaticBackup,
               ),
@@ -341,16 +347,16 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
                     "Last successful: ${DateFormat.yMMMd().add_Hm().format(lastSuccess)}",
                   ),
                 ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               ElevatedButton(
                 onPressed: _isLoading ? null : _performBackup,
-                child: const Text("Backup Now"),
+                child: Text(l10n.backupNow),
               ),
-              const SizedBox(height: 16),
-              const Text("Backup History:"),
+              SizedBox(height: 16),
+              Text(l10n.backupHistory),
               Expanded(
                 child: _isLoading && _backups.isEmpty
-                    ? const Center(child: CircularProgressIndicator())
+                    ? Center(child: CircularProgressIndicator())
                     : ListView.builder(
                         itemCount: _backups.length,
                         itemBuilder: (context, index) {
@@ -368,12 +374,12 @@ class _CloudBackupScreenState extends ConsumerState<CloudBackupScreen> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 IconButton(
-                                  icon: const Icon(Icons.download),
+                                  icon: Icon(Icons.download),
                                   onPressed: () =>
                                       _restoreBackup(backup.backupId),
                                 ),
                                 IconButton(
-                                  icon: const Icon(Icons.delete),
+                                  icon: Icon(Icons.delete),
                                   onPressed: () =>
                                       _deleteBackup(backup.backupId),
                                 ),

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:cryptography/cryptography.dart';
@@ -8,7 +7,7 @@ import 'package:cashio/domain/services/encryption_service.dart';
 void main() {
   late EncryptionService encryptionService;
   late SecretKey testKey;
-  final plaintext = utf8.encode('Hello, Cashio Cloud Backup!') as Uint8List;
+  final plaintext = utf8.encode('Hello, Cashio Cloud Backup!');
 
   setUpAll(() async {
     encryptionService = EncryptionService();
